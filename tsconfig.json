@@ -1,6 +1,21 @@
 {
+    "compileOnSave": true,
     "compilerOptions": {
-        "experimentalDecorators": true,
-        "allowJs": true
-    }
+        "outDir": "./built",
+        "allowJs": true,
+        "target": "es5",
+        "allowUnreachableCode": false,
+        "noImplicitReturns": true,
+        "noImplicitAny": true,
+        "typeRoots": [ "./typings" ],
+        "outFile": "./built/combined.js"
+    },
+    "include": [
+        "./**/*"
+    ],
+    "exclude": [
+        "./plugins/**/*",
+        "./typings/**/*",
+        "./built/**/*" // This is what fixed it!
+    ]
 }
