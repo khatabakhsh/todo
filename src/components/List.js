@@ -1,29 +1,17 @@
 import React, { Component } from "react";
+import { observer } from "mobx-react";
+import Item from "./Item";
+import TodoStore from "../stores/TodoStore";
 
+@observer
 class List extends Component {
   render() {
     return (
       <main className="main">
         <ul className="todo-list">
-          <li>
-            <div className="view">
-              <input type="checkbox" className="toggle" value="on" />
-              <label>New York</label>
-              <button className="destry" />
-            </div>
-          </li>
-          <li className="completed">
-            <div className="view">
-              <input
-                type="checkbox"
-                className="toggle"
-                value="on"
-                checked={true}
-              />
-              <label>New York</label>
-              <button className="destry" />
-            </div>
-          </li>
+          {TodoStore.todos.map((todo) => {
+            return <Item todo={todo} />;
+          })}
         </ul>
       </main>
     );
