@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Header from '../components/Header';
+import TodoApp from '../components/TodoApp';
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
         />
       </Head>
       <Header />
+      <TodoApp />
     </div>
   );
 }
