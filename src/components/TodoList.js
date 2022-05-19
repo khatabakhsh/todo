@@ -1,10 +1,11 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Paper, IconButton, Stack } from '@mui/material';
 import RadioButtonUncheckedRoundedIcon from '@mui/icons-material/RadioButtonUncheckedRounded';
-import { selectTodos } from '../redux/slices/todosSlice';
+import { selectTodos, toggleDone } from '../redux/slices/todosSlice';
 
 export default function TodoList() {
   const todos = useSelector(selectTodos);
+  const dispatch = useDispatch();
 
   return (
     todos.length !== 0 &&
@@ -24,6 +25,10 @@ export default function TodoList() {
         <IconButton
           sx={{ p: '10px' }}
           aria-label="RadioButtonUncheckedRoundedIcon"
+          type="button"
+          onClick={() => {
+            dispatch(toggleDone(todos.indexOf(todo)));
+          }}
         >
           <RadioButtonUncheckedRoundedIcon />
         </IconButton>
