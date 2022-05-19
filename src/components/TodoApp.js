@@ -1,9 +1,13 @@
 import { Container, Paper, InputBase, IconButton } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 
 export default function TodoApp() {
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [inputRef]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
