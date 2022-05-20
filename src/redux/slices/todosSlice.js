@@ -17,10 +17,11 @@ export const todosSlice = createSlice({
         ? (state[action.payload].done = false)
         : (state[action.payload].done = true);
     },
+    clearDones: (state) => state.filter((todo) => todo.done === false),
   },
 });
 
-export const { addTodo, toggleDone } = todosSlice.actions;
+export const { addTodo, toggleDone, clearDones } = todosSlice.actions;
 
 export const selectTodos = (state) => state.todos;
 
