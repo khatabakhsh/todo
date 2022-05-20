@@ -1,41 +1,45 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { Paper, IconButton, Stack } from '@mui/material';
-import RadioButtonUncheckedRoundedIcon from '@mui/icons-material/RadioButtonUncheckedRounded';
-import { selectTodos, toggleDone } from '../redux/slices/todosSlice';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { ToggleButton } from '@mui/material/';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
+import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import TodoItem from './todoItem';
+import { selectTodos } from '../redux/slices/todosSlice';
 
 export default function TodoList() {
   const todos = useSelector(selectTodos);
-  const dispatch = useDispatch();
-
+  const donedTodos = todos.filter((todo) => todo.done === true);
+  const unDonedTodos = todos.filter((todo) => todo.done === false);
+  const [showCompleted, setShowCompleted] = useState(true);
   return (
-    todos.length !== 0 &&
-    todos.map((todo) => (
-      <Paper
-        component="div"
-        variant="outlined"
-        sx={{
-          m: '7px',
-          p: '2px 4px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-        }}
-        key={todo.id}
-      >
-        <IconButton
-          sx={{ p: '10px' }}
-          aria-label="RadioButtonUncheckedRoundedIcon"
-          type="button"
-          onClick={() => {
-            dispatch(toggleDone(todos.indexOf(todo)));
+    <>
+      {unDonedTodos.length !== 0 &&
+        unDonedTodos.map((todo) => (
+          <TodoItem todos={todos} todo={todo} key={todo.id} />
+        ))}
+      {donedTodos.length !== 0 && (
+        <ToggleButton
+          value="check"
+          selected={showCompleted}
+          onChange={() => {
+            setShowCompleted(!showCompleted);
           }}
+          color="primary"
+          size="small"
+          sx={{ m: '7px 7px 0px 7px' }}
         >
-          <RadioButtonUncheckedRoundedIcon />
-        </IconButton>
-        <Stack component="span" sx={{ ml: '7px', pb: '0.5px' }}>
-          {todo.text}
-        </Stack>
-      </Paper>
-    ))
+          Completed
+          {showCompleted ? (
+            <KeyboardArrowDownRoundedIcon />
+          ) : (
+            <ChevronRightRoundedIcon />
+          )}
+        </ToggleButton>
+      )}
+      {showCompleted &&
+        donedTodos.map((todo) => (
+          <TodoItem todos={todos} todo={todo} key={todo.id} />
+        ))}
+    </>
   );
 }
