@@ -6,6 +6,7 @@ import { toggleDone } from '../redux/slices/todosSlice';
 
 export default function TodoItem({ todos, todo }) {
   const dispatch = useDispatch();
+  const textDecoration = todo.done ? 'line-through' : 'none';
   return (
     <Paper
       component="div"
@@ -32,7 +33,7 @@ export default function TodoItem({ todos, todo }) {
           <RadioButtonUncheckedRoundedIcon />
         )}
       </IconButton>
-      <Stack component="span" sx={{ ml: '7px', pb: '0.5px' }}>
+      <Stack component="span" sx={{ ml: '7px', pb: '0.5px', textDecoration }}>
         {todo.text}
       </Stack>
     </Paper>
