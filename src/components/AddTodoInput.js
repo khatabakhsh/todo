@@ -43,14 +43,14 @@ export default function AddTodoInput() {
         <AddCircleOutlineIcon />
       </IconButton>
       <InputBase
-        sx={{ ml: '7px', flex: 1 }}
+        type="text"
         placeholder="Add Task"
-        inputProps={{ 'aria-label': 'add task' }}
         name="add-task"
         id="addTask"
         autoFocus
-        type="text"
+        inputProps={{ autocomplete: 'off' }}
         inputRef={inputRef}
+        sx={{ ml: '7px', flex: 1 }}
       />
     </Paper>
   );
