@@ -11,7 +11,7 @@ export default function Header() {
             align="center"
             sx={{ flexGrow: 1 }}
           >
-            ToDo List
+            ToDo App
           </Typography>
         </Toolbar>
       </AppBar>
