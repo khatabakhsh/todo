@@ -15,7 +15,9 @@ export default function AddTodoInput() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const text = inputRef.current.value;
-    dispatch(addTodo({ id: Date.now(), text }));
+    if (text !== '') {
+      dispatch(addTodo({ id: Date.now(), text }));
+    }
     inputRef.current.value = '';
   };
 
