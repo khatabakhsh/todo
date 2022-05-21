@@ -48,7 +48,7 @@ export default function AddTodoInput() {
         name="add-task"
         id="addTask"
         autoFocus
-        inputProps={{ autocomplete: 'off' }}
+        inputProps={{ autoComplete: 'off' }}
         inputRef={inputRef}
         sx={{ ml: '7px', flex: 1 }}
       />
