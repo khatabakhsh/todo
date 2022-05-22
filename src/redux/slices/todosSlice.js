@@ -1,17 +1,19 @@
 /* eslint-disable no-unused-expressions */
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, nanoid } from '@reduxjs/toolkit';
 
 export const todosSlice = createSlice({
   name: 'todos',
   initialState: [],
   reducers: {
-    addTodo: (state, action) => {
-      const { id, text } = action.payload;
-      state.push({
-        id,
-        text,
-        done: false,
-      });
+    addTodo: {
+      reducer(state, action) {
+        state.push(action.payload);
+      },
+      prepare(text) {
+        return {
+          payload: { id: nanoid(), text, done: false },
+        };
+      },
     },
     toggleDone: (state, action) => {
       const todo = state.find((item) => item.id === action.payload.id);
