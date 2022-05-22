@@ -16,7 +16,7 @@ export default function AddTodoInput() {
     e.preventDefault();
     const text = inputRef.current.value;
     if (text !== '') {
-      dispatch(addTodo({ id: Date.now(), text }));
+      dispatch(addTodo(text));
     }
     inputRef.current.value = '';
   };

@@ -16,9 +16,7 @@ export default function TodoList() {
   return (
     <>
       {unDonedTodos.length !== 0 &&
-        unDonedTodos.map((todo) => (
-          <TodoItem todos={todos} todo={todo} key={todo.id} />
-        ))}
+        unDonedTodos.map((todo) => <TodoItem todo={todo} key={todo.id} />)}
       {donedTodos.length !== 0 && (
         <ToggleButton
           value="check"
@@ -39,9 +37,7 @@ export default function TodoList() {
         </ToggleButton>
       )}
       {showCompleted &&
-        donedTodos.map((todo) => (
-          <TodoItem todos={todos} todo={todo} key={todo.id} />
-        ))}
+        donedTodos.map((todo) => <TodoItem todo={todo} key={todo.id} />)}
       {donedTodos.length !== 0 && showCompleted && (
         <Button
           variant="outlined"
