@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { nanoid } from '@reduxjs/toolkit';
 import { Paper, InputBase, IconButton } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { addTodo } from '../redux/slices/todosSlice';
@@ -16,7 +17,7 @@ export default function AddTodoInput() {
     e.preventDefault();
     const text = inputRef.current.value;
     if (text !== '') {
-      dispatch(addTodo({ id: Date.now(), text }));
+      dispatch(addTodo({ id: nanoid(), text }));
     }
     inputRef.current.value = '';
   };
