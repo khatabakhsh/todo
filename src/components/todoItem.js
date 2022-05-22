@@ -1,12 +1,14 @@
+import { memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { Paper, IconButton, Stack } from '@mui/material';
 import RadioButtonUncheckedRoundedIcon from '@mui/icons-material/RadioButtonUncheckedRounded';
 import TaskAltRoundedIcon from '@mui/icons-material/TaskAltRounded';
 import { toggleDone } from '../redux/slices/todosSlice';
 
-export default function TodoItem({ todos, todo }) {
+function TodoItem({ todo }) {
   const dispatch = useDispatch();
   const textDecoration = todo.done ? 'line-through' : 'none';
+
   return (
     <Paper
       component="div"
@@ -24,7 +26,7 @@ export default function TodoItem({ todos, todo }) {
         aria-label="RadioButtonUncheckedRoundedIcon"
         type="button"
         onClick={() => {
-          dispatch(toggleDone(todos.indexOf(todo)));
+          dispatch(toggleDone(todo));
         }}
       >
         {todo.done ? (
@@ -39,3 +41,5 @@ export default function TodoItem({ todos, todo }) {
     </Paper>
   );
 }
+
+export default memo(TodoItem);

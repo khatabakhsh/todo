@@ -6,16 +6,16 @@ export const todosSlice = createSlice({
   initialState: [],
   reducers: {
     addTodo: (state, action) => {
+      const { id, text } = action.payload;
       state.push({
-        id: action.payload.id,
-        text: action.payload.text,
+        id,
+        text,
         done: false,
       });
     },
     toggleDone: (state, action) => {
-      state[action.payload].done
-        ? (state[action.payload].done = false)
-        : (state[action.payload].done = true);
+      const todo = state.find((item) => item.id === action.payload.id);
+      todo.done ? (todo.done = false) : (todo.done = true);
     },
     clearDones: (state) => state.filter((todo) => todo.done === false),
   },
